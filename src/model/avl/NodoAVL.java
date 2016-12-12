@@ -56,6 +56,7 @@ public class NodoAVL extends NodoBin{
             return 1 + Math.max(altura((NodoAVL)a.getIzq()), altura((NodoAVL)a.getDer()));
     }
     
+    @Override
     public void inOrden(Hashing Hash){
         if (izq!=null)
             izq.inOrden(Hash);

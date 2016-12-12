@@ -5,6 +5,10 @@
  */
 package view;
 
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JTable;
+
 /**
  *
  * @author Evan-Ian-Ray
@@ -140,4 +144,19 @@ public class AVLBoard extends javax.swing.JFrame {
     private javax.swing.JLabel trendingTopicLabel;
     private javax.swing.JTable tuitTable;
     // End of variables declaration//GEN-END:variables
+
+    public JButton getShowTweetsButton(){
+        
+        return showTweetsButton;
+    }
+    
+    public JComboBox getTrendingTopic(){
+        
+        return trendingTopicComboBox;
+    }
+    
+    public JTable getTuitTable(){
+        
+        return tuitTable;
+    }
 }
