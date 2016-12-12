@@ -5,7 +5,9 @@
  */
 package Hash;
 
+import listas.ListaDoble;
 import listas.ListaSimple;
+import listas.Nodo;
 
 
 /**
@@ -14,8 +16,9 @@ import listas.ListaSimple;
  */
 public class Hashing {
     private ListaSimple[] tabla = new ListaSimple[1000];
-    
-    public void insertar(Object tweet,Object user, int val){
+    int val;
+    public void insertar(Object tweet,Object user){
+        val =dispersion(user.toString());
         if(tabla[val]==null){
             tabla[val] = new ListaSimple();
          tabla[val].insertaFinal(tweet, user);
@@ -38,6 +41,24 @@ public class Hashing {
         val = val % 1000;
         
        return val; 
+    }
+    public String buscar(Object u){
+        String ret;
+      int a =  dispersion(u.toString());
+      Nodo Actual = tabla[a].getInicio();
+      while(Actual!=null){
+          if(Actual.getUser().toString().equals(u.toString())){
+              ret = Actual.getUser().toString() + " - " + Actual.getTweet().toString();
+             
+              return ret;
+          }
+          else{
+              Actual = Actual.getSiguiente();
+          }
+      }
+        
+        
+        return u.toString();
     }
      
 }

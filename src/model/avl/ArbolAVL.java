@@ -5,6 +5,8 @@
  */
 package model.avl;
 
+import Hash.Hashing;
+
 /**
  * 
  * @author Evan-Ian-Ray
@@ -12,13 +14,13 @@ package model.avl;
 public class ArbolAVL {
     protected NodoAVL raiz;
 
-    public ArbolAVL(Object o) {
-        raiz = new NodoAVL(o);
+    public ArbolAVL(String h) {
+        raiz = new NodoAVL(h);
     }
     
-    public void inOrden(){
+    public void inOrden(Hashing Hash){
         if (raiz!=null)
-            raiz.inOrden();
+            raiz.inOrden(Hash);
     }
     
     public void preOrden(){
@@ -31,33 +33,34 @@ public class ArbolAVL {
             raiz.posOrden();
     }
     
-    public void insertar(Object o){
-        insertarOrdenado(raiz,o);
+    public void insertar(String h){
+        System.out.println(h);
+        insertarOrdenado(raiz,h);
     }
     
-    private void insertarOrdenado(NodoAVL n, Object o){
-        if ((Integer)o<(Integer)n.getDato()){
+    private void insertarOrdenado(NodoAVL n, String h){
+        if (h.compareTo((String)n.getDato())<=0){
             if (n.getIzq()==null){
-                n.setIzq(new NodoAVL(o,null,null,n));
+                n.setIzq(new NodoAVL(h,null,null,n));
                 recalcularFE(n);
             }
             else
-                insertarOrdenado((NodoAVL)n.getIzq(),o);
+                insertarOrdenado((NodoAVL)n.getIzq(),h);
             }  
         else{
-            if ((Integer)o>(Integer)n.getDato())
+            if (h.compareTo((String)n.getDato())>0)
                 if (n.getDer()==null){
-                n.setDer(new NodoAVL(o,null,null,n));
+                n.setDer(new NodoAVL(h,null,null,n));
                 recalcularFE(n);
             }
             else
-                insertarOrdenado((NodoAVL)n.getDer(),o);
+                insertarOrdenado((NodoAVL)n.getDer(),h);
         }
     }
     
     public void recalcularFE(NodoAVL nodo){
         if (nodo!=null){
-            nodo.setFe(NodoAVL.altura((NodoAVL)nodo.getDer())-NodoAVL.altura((NodoAVL)nodo.getIzq()));
+            nodo.setFe(NodoAVL.altura((NodoAVL)nodo.getDer())- NodoAVL.altura((NodoAVL)nodo.getIzq()));
             if (nodo.getFe()==2 || nodo.getFe()==-2)
                 balancear(nodo);
             else
@@ -72,11 +75,11 @@ public class ArbolAVL {
                 case 0:
                 case 1: 
                     rotacionDD(nodo);
-                    System.out.println("RotacionDD");
+//                    System.out.println("RotacionDD");
                     break;
                 case -1:
                     rotacionDI(nodo);
-                    System.out.println("RotacionDI");
+//                    System.out.println("RotacionDI");
                     break;
             }
         }
@@ -84,12 +87,12 @@ public class ArbolAVL {
             switch(((NodoAVL)nodo.getIzq()).getFe()){
                 case 0:
                 case 1: 
-                    rotacionII(nodo);
-                    System.out.println("RotacionII");
+                    rotacionID(nodo);
+//                    System.out.println("RotacionID");
                     break;
                 case -1:
-                    rotacionID(nodo);
-                    System.out.println("RotacionID");
+                    rotacionII(nodo);
+//                    System.out.println("RotacionII");
                     break;
         }
     }
@@ -245,17 +248,21 @@ public class ArbolAVL {
     }
     
     
-    public static void main(String[] args) {
-        ArbolAVL arbol = new ArbolAVL(9);
-        
-        arbol.insertar(11);
-        arbol.insertar(1);
-        arbol.insertar(111);
-        arbol.insertar(101);
-        arbol.insertar(10);
-        arbol.insertar(100);
-        arbol.insertar(1111);
-        arbol.inOrden();
-    }
+//    public static void main(String[] args) {
+//        ArbolAVL arbol = new ArbolAVL("arboleishon");
+//       
+//        
+//        
+//        arbol.insertar("señoraloca25");
+//        arbol.insertar("elamigopablo34");
+//        arbol.insertar("barneñ87");
+//        arbol.insertar("diasdepaso");
+//        arbol.insertar("sombrasoscuras");
+//        arbol.insertar("mayoritachi");
+//        arbol.insertar("chefjamon");
+//        arbol.inOrden();
+//        
+//       
+//    }
 }
     

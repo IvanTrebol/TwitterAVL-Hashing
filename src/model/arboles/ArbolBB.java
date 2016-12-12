@@ -19,8 +19,8 @@ public class ArbolBB {
     }
     
     public void inOrden(){
-        if (raiz!=null)
-            raiz.inOrden();
+//        if (raiz!=null)
+//            raiz.inOrden();
     }
     
     public void preOrden(){

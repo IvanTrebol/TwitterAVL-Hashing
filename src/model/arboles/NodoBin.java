@@ -5,6 +5,8 @@
  */
 package model.arboles;
 
+import Hash.Hashing;
+
 /**
  * 
  * @author Evan-Ian-Ray
@@ -28,12 +30,12 @@ public class NodoBin {
     }
 
     //IRD
-    public void inOrden(){
+    public void inOrden(Hashing Hash){
         if (izq!=null)
-            izq.inOrden();
-        System.out.println(dato);
+            izq.inOrden(Hash);
+        System.out.println(Hash.buscar(dato));
         if (der!=null)
-            der.inOrden();
+            der.inOrden(Hash);
     }
     
     //RID

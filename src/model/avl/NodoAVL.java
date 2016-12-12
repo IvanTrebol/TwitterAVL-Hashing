@@ -5,6 +5,7 @@
  */
 package model.avl;
 
+import Hash.Hashing;
 import model.arboles.NodoBin;
 
 /**
@@ -15,6 +16,22 @@ public class NodoAVL extends NodoBin{
     protected int fe;
     protected NodoAVL padre;
 
+    public int getFe(){
+        return fe;
+    }
+    
+    public void setFe(int fe){
+        this.fe=fe;
+    }
+    
+    public NodoAVL getPadre(){
+        return padre;
+    }
+    
+    public void setPadre(NodoAVL padre){
+        this.padre=padre;
+    }
+    
     public NodoAVL() {
     }
 
@@ -31,6 +48,7 @@ public class NodoAVL extends NodoBin{
         this.padre = padre;
     }
 
+    
     public static int altura(NodoAVL a){
         if(a==null)
             return -1;
@@ -38,12 +56,12 @@ public class NodoAVL extends NodoBin{
             return 1 + Math.max(altura((NodoAVL)a.getIzq()), altura((NodoAVL)a.getDer()));
     }
     
-    public void inOrden(){
+    public void inOrden(Hashing Hash){
         if (izq!=null)
-            izq.inOrden();
-        System.out.println(dato+" FE: "+ fe);
+            izq.inOrden(Hash);
+        System.out.println(Hash.buscar(dato));
         if (der!=null)
-            der.inOrden();
+            der.inOrden(Hash);
     }
     
     public void preOrden(){
@@ -61,21 +79,6 @@ public class NodoAVL extends NodoBin{
             der.posOrden();
         System.out.println(dato+" FE: "+ fe);
     }
-    public int getFe() {
-        return fe;
-    }
-
-    public void setFe(int fe) {
-        this.fe = fe;
-    }
-
-    public NodoAVL getPadre() {
-        return padre;
-    }
-
-    public void setPadre(NodoAVL padre) {
-        this.padre = padre;
-    }
-    
+   
     
 }
