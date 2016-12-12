@@ -27,21 +27,26 @@ public class Control {
         try {
             BufferedReader in = new BufferedReader(new FileReader(a + ".txt"));
             BufferedReader inUser = new BufferedReader(new FileReader(a + "Users.txt"));
-            Hashing Hash = new Hashing();
-            String Line = in.readLine();
-            String readStringLine = inUser.readLine();
-            List<String> lines = new ArrayList<String>();
-            while(readStringLine!= null && Line != null) {
-                lines.add(readStringLine);
-                Hash.insertar(Line, readStringLine);
-                readStringLine = inUser.readLine();
-                Line = in.readLine();
+            Hashing Hash = new Hashing(a);
+            
+            String hashedTweet = in.readLine();
+            String hashedUser = inUser.readLine();
+            
+            List<String> usersList = new ArrayList<String>();
+            
+            while(hashedUser!= null && hashedTweet != null) {
+                
+                usersList.add(hashedUser);
+                Hash.insertar(hashedTweet, hashedUser);
+                hashedUser = inUser.readLine();
+                hashedTweet = in.readLine();
             }
             in.close();
             inUser.close();
             
-            String[] Users = lines.toArray(new String[lines.size()]);
+            String[] Users = usersList.toArray(new String[usersList.size()]);
             ArbolAVL Usuarios = new ArbolAVL(Users[0]);
+            
             for(int i = 1; i< Users.length;i++){
                 Usuarios.insertar(Users[i]);
                 System.out.println(i);

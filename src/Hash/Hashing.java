@@ -5,9 +5,13 @@
  */
 package Hash;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import listas.ListaDoble;
 import listas.ListaSimple;
 import listas.Nodo;
+import listas.NodoDoble;
 
 
 /**
@@ -15,12 +19,21 @@ import listas.Nodo;
  * @author A15216354
  */
 public class Hashing {
-    private ListaSimple[] tabla = new ListaSimple[1000];
-    int val;
+    private String y;
+    private ListaDoble[] tabla = new ListaDoble[1000];
+
+    public Hashing(String y) {
+        this.y = y;
+    }
+    
     public void insertar(Object tweet,Object user){
+    
+        int val;
+        
         val =dispersion(user.toString());
         if(tabla[val]==null){
-            tabla[val] = new ListaSimple();
+            
+            tabla[val] = new ListaDoble();
          tabla[val].insertaFinal(tweet, user);
         }
         else{
@@ -42,14 +55,19 @@ public class Hashing {
         
        return val; 
     }
-    public String buscar(Object u){
+    public String buscar(Object u) throws IOException{
         String ret;
       int a =  dispersion(u.toString());
-      Nodo Actual = tabla[a].getInicio();
+      NodoDoble Actual = tabla[a].getInicio();
       while(Actual!=null){
           if(Actual.getUser().toString().equals(u.toString())){
               ret = Actual.getUser().toString() + " - " + Actual.getTweet().toString();
-             
+              BufferedWriter us = new BufferedWriter(new FileWriter(y + ".txt"));
+              BufferedWriter users = new BufferedWriter(new FileWriter(y + "User.txt"));
+              us.write(Actual.getTweet().toString());
+              users.write(Actual.getUser().toString());
+              
+             tabla[a].elimina(Actual);
               return ret;
           }
           else{
@@ -60,6 +78,7 @@ public class Hashing {
         
         return u.toString();
     }
+   
      
 }
 

@@ -6,6 +6,9 @@
 package model.avl;
 
 import Hash.Hashing;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.arboles.NodoBin;
 
 /**
@@ -59,7 +62,11 @@ public class NodoAVL extends NodoBin{
     public void inOrden(Hashing Hash){
         if (izq!=null)
             izq.inOrden(Hash);
-        System.out.println(Hash.buscar(dato));
+        try {
+            System.out.println(Hash.buscar(dato));
+        } catch (IOException ex) {
+            Logger.getLogger(NodoAVL.class.getName()).log(Level.SEVERE, null, ex);
+        }
         if (der!=null)
             der.inOrden(Hash);
     }
