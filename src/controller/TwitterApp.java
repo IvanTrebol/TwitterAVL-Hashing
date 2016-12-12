@@ -15,8 +15,6 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Tweet;
-//import model.colas.ColaPrioridad;
-//import model.listas.ListaSimple;
 /**
  *
  * @author Evan-Ian-Ray
